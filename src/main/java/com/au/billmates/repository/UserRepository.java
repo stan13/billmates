@@ -1,9 +1,10 @@
 package com.au.billmates.repository;
 
-import com.au.billmates.entities.Housemate;
+import com.au.billmates.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HousemateRepository extends JpaRepository<Housemate, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
 }

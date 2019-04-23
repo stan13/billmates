@@ -1,9 +1,6 @@
 package com.au.billmates.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,14 +8,13 @@ import java.util.Set;
 @Table(name = "housemate")
 public class Housemate extends AbstractEntity {
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "house_id", referencedColumnName = "id")
+    private House house;
 
     @OneToMany(targetEntity = BillFraction.class, mappedBy = "housemate")
     private Set<BillFraction> billFractions = new HashSet<>();
@@ -26,28 +22,23 @@ public class Housemate extends AbstractEntity {
     @OneToMany(targetEntity = Payment.class, mappedBy = "housemate")
     private Set<Payment> payments = new HashSet<>();
 
-    public String getUsername() {
-        return username;
+    @Column(name = "admin")
+    private Boolean admin = false;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getName() {
-        return name;
+    public House getHouse() {
+        return house;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public Set<BillFraction> getBillFractions() {
@@ -64,5 +55,13 @@ public class Housemate extends AbstractEntity {
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 }
