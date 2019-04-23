@@ -17,6 +17,10 @@ public class Bill extends AbstractEntity {
     @JoinColumn(name = "bill_type_id", referencedColumnName = "id")
     private BillType billType;
 
+    @ManyToOne
+    @JoinColumn(name = "automatic_bill_id", referencedColumnName = "id")
+    private AutomaticBill automaticBill;
+
     @Column(name = "amount")
     private Float amount;
 

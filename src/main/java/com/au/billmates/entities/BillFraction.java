@@ -16,4 +16,28 @@ public class BillFraction extends AbstractEntity {
 
     @Column(name = "amount")
     private Float amount;
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public Housemate getHousemate() {
+        return housemate;
+    }
+
+    public void setHousemate(Housemate housemate) {
+        this.housemate = housemate;
+    }
+
+    public Float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Float amount) {
+        this.amount = amount;
+    }
 }
